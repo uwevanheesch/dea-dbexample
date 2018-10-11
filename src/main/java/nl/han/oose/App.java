@@ -8,8 +8,8 @@ public class App {
 
         AccountDAO accountDAO = new AccountDAO();
 
-        Account newAccount = new Account("piet", "pietpass");
-        accountDAO.persistAccount(newAccount);
+//        Account newAccount = new Account("piet", "pietpass");
+//        accountDAO.persistAccount(newAccount);
 
         for (Account account : accountDAO.getAllAccounts()) {
             System.out.println(account);
