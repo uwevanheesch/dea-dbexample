@@ -1,8 +1,5 @@
-create table ACCOUNT
-(
-	user varchar(255) not null
-		primary key,
-	password varchar(255) not null
-)
-;
+CREATE TABLE IF NOT EXISTS ACCOUNT(
+	user VARCHAR (255) NOT NULL	PRIMARY KEY,
+	password VARCHAR (255) NOT NULL
+);
 
