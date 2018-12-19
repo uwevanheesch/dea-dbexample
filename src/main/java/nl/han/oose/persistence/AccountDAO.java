@@ -17,11 +17,11 @@ public class AccountDAO {
         connectionFactory = new ConnectionFactory();
     }
 
-    public List<Account> getAllAccounts() {
+    public List<Account> getAllAccounts() throws PersistenceException {
         List<Account> accounts = new ArrayList<>();
         try (
                 Connection connection = connectionFactory.getConnection();
-                PreparedStatement statement = connection.prepareStatement("SELECT * FROM ACCOUNT");
+                PreparedStatement statement = connection.prepareStatement("SELECT * FROM ACCOUNT")
         ) {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
@@ -30,16 +30,18 @@ public class AccountDAO {
                 accounts.add(new Account(user, password));
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new PersistenceException(e);
+
         }
         return accounts;
     }
+
 
     public void persistAccount(Account account) {
         try (
                 Connection connection = connectionFactory.getConnection();
                 PreparedStatement statement = connection.prepareStatement(
-                        "INSERT INTO ACCOUNT (user,password) VALUES (?,?)");
+                        "INSERT INTO ACCOUNT (user,password) VALUES (?,?)")
         ) {
             statement.setString(1, account.getUser());
             statement.setString(2, account.getPassword());

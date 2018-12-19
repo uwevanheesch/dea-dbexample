@@ -1,6 +1,5 @@
 package nl.han.oose;
 
-import nl.han.oose.entity.Account;
 import nl.han.oose.persistence.AccountDAO;
 
 public class App {
@@ -8,12 +7,10 @@ public class App {
 
         AccountDAO accountDAO = new AccountDAO();
 
-//        Account newAccount = new Account("piet", "pietpass");
+//        Account newAccount = new Account("harras", "hansen");
 //        accountDAO.persistAccount(newAccount);
 
-        for (Account account : accountDAO.getAllAccounts()) {
-            System.out.println(account);
-        }
+        accountDAO.getAllAccounts().forEach(System.out::println);
 
     }
 }

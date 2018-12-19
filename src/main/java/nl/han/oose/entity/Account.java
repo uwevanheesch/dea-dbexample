@@ -1,8 +1,11 @@
 package nl.han.oose.entity;
 
+import java.util.Objects;
+
 public class Account {
     private String user;
     private String password;
+
 
     public Account(String user, String password) {
         this.user = user;
@@ -34,5 +37,20 @@ public class Account {
                 "user='" + user + '\'' +
                 ", password='" + password + '\'' +
                 '}';
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Account account = (Account) o;
+        return Objects.equals(user, account.user) &&
+                Objects.equals(password, account.password);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(user, password);
     }
 }
